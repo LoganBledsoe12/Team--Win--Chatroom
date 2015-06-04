@@ -2,5 +2,9 @@
 	width:100%;
 	height:500px;
 	border:solid 1px black;
-	background-color: rgba()transparent
+	background-color: rgba(216,93,38, .5)
+	
+}
+#inputbox{
+	width:450px;
 }
