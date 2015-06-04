@@ -9,20 +9,20 @@ $(document).ready(function() {
 
 		$input = $('#inputbox').val();
 		user = $('#usernamebox').val();
-
+		// $('.comment').emoticonize();
 		console.log($input);
 		console.log(user);
-		$.post('http://tiny-pizza-server.herokuapp.com/collections/slacker', {username: user, message: $input, }, 'JSON' );
+		$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry: $input }, 'JSON' );
 		$('#inputbox').val('');
 	});
 	function getMsg(){
-		$.get('http://tiny-pizza-server.herokuapp.com/collections/slacker',chatMessages, 'JSON' );
+		$.get('http://fathomless-caverns-2838.herokuapp.com/messages',chatMessages, 'JSON' );
 		function chatMessages(data){
 		var html = '';
 			data.reverse();
 			for(var i=0; i<data.length; i++){
 				var msg = data[i];
-				html+='<div>'+msg.username+': '+msg.message+'</div>';
+				html+='<div>'+msg.username+': '+msg.entry+'</div>';
 
 			}
 				$('#chatbox').html(html);
