@@ -2,7 +2,9 @@
 	width:100%;
 	height:500px;
 	border:solid 1px black;
-	background-color: rgba(216,93,38, .5)
+	background-color: rgba(216,93,38, .5);
+	overflow: auto;
+
 	
 }
 #inputbox{
