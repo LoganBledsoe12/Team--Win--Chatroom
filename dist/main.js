@@ -33,6 +33,9 @@ $(document).ready(function() {
 				$("#chatbox").scrollTop($("#chatbox").prop('scrollHeight'));
 				console.log($("#chatbox").prop('scrollHeight'));
 				$('#chatbox').emoticonize();
+				$('#chatbox').profanityFilter({
+    			customSwears: ['booty','boobie','ass','weiner','crap','shit','fuck']
+});
 		}
 
 
