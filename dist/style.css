@@ -22,8 +22,10 @@ body{
 	
 }
 
-img{
 
+
+h1{
+	color: white;
 }
 
 #inputbox{
@@ -69,7 +71,7 @@ img{
 	float: left;
 	margin-right: 5px;
 	color: #00B5B5;
-
+	font-size: 15px;
 	
 
 }
@@ -133,9 +135,14 @@ img{
 	font-size: 18px;
 }
 
+ #user, .gen{
+ 	color: pink;
+ }
+
 .chatnum, .leadnum{
 	float: right;
 	padding-right: 10px;
+	color: lavender;
 
 }
 .chatname, .leadname{
