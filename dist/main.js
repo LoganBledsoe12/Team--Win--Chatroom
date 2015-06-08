@@ -54,12 +54,7 @@ $(document).ready(function() {
 		var className = '.'+$(e.target).attr('id');
 		$(className).show();
 		console.log(className);
-		// if(className === '.active'){
-		// 	getScores('http://fathomless-caverns-2838.herokuapp.com/messages/active_chatroom', className);
-		// }
-		// else if(className === '.leader'){
-		// 	getScores('http://fathomless-caverns-2838.herokuapp.com/messages/leaderboard', className);
-		// }
+	
 
 
 	})
@@ -70,7 +65,7 @@ $(document).ready(function() {
 				var string = '';
 				$('#leaderbox').html('');
 				for(var prop in scores){
-					string = '<div id="'+prop+'">'+prop +' '+scores[prop]+'</div>';
+					string = '<div class="leadname" id="'+prop+'">'+prop +'</div><div class="leadnum"> '+scores[prop]+'</div>';
 					$('#leaderbox').append(string);
 				}				
 			},
@@ -94,10 +89,15 @@ $(document).ready(function() {
 			$.get('http://fathomless-caverns-2838.herokuapp.com/messages/active_chatroom', function(activeChat){
 				var string = '';
 				 $('#activeChat').html('');
+				 var array = [];
 				for(var prop in activeChat){
-					string = '<div id="'+prop+'">'+prop +' '+activeChat[prop]+'</div>';
-					$('#activeChat').append(string);
-				}				
+					string = '<div class="chatname" id="'+prop+'">'+prop +' </div>'+'<div class="chatnum">'+activeChat[prop]+'</div>';
+					array.unshift(string);
+					
+				}			
+				for(var i = 0; i < array.length; i++){
+					$('#activeChat').append(array[i]);
+				}	
 			},
 			'JSON');
 	}
@@ -135,16 +135,18 @@ $(document).ready(function() {
 					messagenumber=data.length;
 					$(chatscreen).html(addMsgs);
 
-					// setTimeout("$(chatscreen).scrollTop($(chatscreen).prop('scrollHeight'))",500 );
+					function getHeight(){
+						$(chatscreen).scrollTop($(chatscreen).prop('scrollHeight'))
+					}
+
+					setTimeout(getHeight,500 );
 					// $('#chatbox').emoticonize();
 					$(chatscreen).profanityFilter({
 	    				customSwears: ['booty','boobie','ass','weiner','crap','shit','fuck']
 					});
 					chatbot(data[data.length-1]);
-				}
-
-
 				
+				}
 		}
 
 
@@ -155,21 +157,22 @@ $(document).ready(function() {
 }
 	function chatbot(message){
 		if (message.entry === 'hello'){
-			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'how are you?'}, 'JSON' );
+			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'how are you?', room_name: room }, 'JSON' );
+			
 		}
 		else if (message.entry === 'hi'){
-			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'whats up?'}, 'JSON' );
+			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'whats up?', room_name: room }, 'JSON' );
 		}
 		else if (message.entry === 'bye'){
-			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'peace out!'}, 'JSON' );
+			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'peace out!', room_name: room }, 'JSON' );
 		}
 		else if (message.entry === 'idk'){
-			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'i dont know'}, 'JSON' );
+			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'i dont know', room_name: room }, 'JSON' );
 		}
 		else if (message.entry === 'k'){
-			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'okay'}, 'JSON' );
+			$.post('http://fathomless-caverns-2838.herokuapp.com/messages/new', {username: user, entry:'okay', room_name: room }, 'JSON' );
 		}
-
+		
 	}
 
 
